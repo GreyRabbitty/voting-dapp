@@ -31,9 +31,9 @@ exports.check = async (req, res) => {
                     if (citizen.isBanned == true) {
                         return res.status(400).send('Citizen is banned!');
                     }
-                    // Checks if the citizen has a city and county
-                    if (citizen.city == '' || citizen.county == '') {
-                        return res.status(400).send('Citizen doesnt have a city or county!');
+                    // Checks if the citizen has a city and zipcode
+                    if (citizen.city == '' || citizen.zipCode == '') {
+                        return res.status(400).send('Citizen doesnt have a city or zipcode!');
                     }
                     // Create a token for the citizen
                     const token = jwt.sign(
@@ -42,7 +42,7 @@ exports.check = async (req, res) => {
                             name: citizen.name,
                             surname: citizen.surname,
                             city: citizen.city,
-                            county: citizen.county,
+                            zipCode: citizen.zipCode,
                             secret: citizen.secret
                         },
                         process.env.JWT_SECRET,
@@ -65,7 +65,7 @@ exports.check = async (req, res) => {
 };
 
 // Path: voting-dapp/voting-tracker-api/controllers/Citizen.js
-// Citizen verifies the city and county with this endpoint, if they are correct, citizen can vote
+// Citizen verifies the city and zipCode with this endpoint, if they are correct, citizen can vote
 exports.verify = async (req, res) => {
     const { citizenshipId, validationOfPlaceOfResidence } = req.body;
     // find the citizen based on cizienshipId with async way
@@ -91,7 +91,7 @@ exports.verify = async (req, res) => {
                 name: citizen.name,
                 surname: citizen.surname,
                 city: citizen.city,
-                county: citizen.county,
+                zipCode: citizen.zipCode,
                 secret: citizen.secret
             },
             process.env.JWT_SECRET,
