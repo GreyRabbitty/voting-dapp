@@ -20,15 +20,11 @@ export class HomeComponent {
   startVoting(name: string, surname: string, idNumber: string, secret: string) {
     this.votingService.startVoting(name, surname, idNumber, secret).subscribe(
       (response) => {
-        // Successfuly started, redirect part 2
-        console.log('Login successful');
         this.router.navigate(['/stepverifyc']);
       },
       (error) => {
-        // Handle login error
         console.error('Login failed', error);
         alert('Something went wrong!');
-        // Display error message or perform other actions upon login failure
       }
     );
   }

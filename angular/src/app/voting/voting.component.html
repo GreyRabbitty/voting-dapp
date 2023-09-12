@@ -11,7 +11,6 @@
   </div>
   <div class="grid max-w-md gap-10 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-5 xl:max-w-screen-lg sm:mx-auto">
 
-    <!-- First Party-->
     <div
     *ngFor="let party of candidateInfos" class="flex flex-col transition duration-300 bg-white rounded shadow-sm hover:shadow">
       <div class="relative w-full h-48">
@@ -24,6 +23,11 @@
         (click)="vote(party.id)"> Oy ver! </button>
       </div>
     </div>
+  </div>
+  <div class="flex justify-center items-center gap-11 max-w-l my-7">
+    <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-red-700 text-white"
+    (click)="cancelVoting()"
+    >Oyumu iptal et</button>
   </div>
 
 

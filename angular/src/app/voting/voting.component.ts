@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { VotingService } from '../services/votingService';
 
 @Component({
   selector: 'app-voting',
@@ -35,7 +36,7 @@ export class VotingComponent {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private votingService: VotingService) {}
 
   vote(partyId: string) {
     var ok = true;
@@ -50,5 +51,21 @@ export class VotingComponent {
     } else {
       this.router.navigate(['/votingdenied']);
     }
+  }
+
+  cancelVoting() {
+    this.votingService.cancelVoting().subscribe(
+      (data) => {
+        alert('Oylamanız isteğiniz üzerine iptal edilmiştir.');
+        localStorage.removeItem('authToken');
+        this.router.navigate(['/votingdenied']);
+      },
+      (error) => {
+        console.log(error);
+        alert('Something went wrong.');
+        localStorage.removeItem('authToken');
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

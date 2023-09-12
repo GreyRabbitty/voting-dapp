@@ -53,4 +53,23 @@ export class VotingService {
         })
       );
   }
+
+  cancelVoting() {
+    const token = localStorage.getItem('authToken');
+    return this.http
+      .post(
+        `${this.apiUrl}/cdata/cancelv`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .pipe(
+        tap((response: any) => {
+          return response.data;
+        })
+      );
+  }
 }

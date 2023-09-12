@@ -106,6 +106,9 @@ exports.verify = async (req, res) => {
         return res.status(200).send('The place of residence is not correct! Citizen updated as voted!');
     }
 };
+
+// Path: voting-dapp/voting-tracker-api/controllers/Citizen.js
+// Citizen gets the data from the token
 exports.get = async (req, res) => {
     const authHeader = req.headers.authorization;
 
@@ -126,3 +129,43 @@ exports.get = async (req, res) => {
         return res.status(200).json(decoded);
     });
 }
+
+// Path: voting-dapp/voting-tracker-api/controllers/Citizen.js
+// Citizen cancels the vote
+exports.cancel = async (req, res) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+        return res.status(400).send('Token doesnt exist!');
+    }
+    const token = authHeader.split(' ')[1]; // Assuming the header value is in the format 'Bearer <token>'
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
+        if (err) {
+            if (err.name === 'TokenExpiredError') {
+                return res.status(400).json({ message: 'Token has expired' });
+            } else {
+                return res.status(401).json({ message: 'Invalid token' });
+            }
+        }
+        // Token is valid
+
+        // Update the user like he/she has voted before
+        // Find the user based on citenshipId
+        const citizen = await Citizen.findOne({ citizenshipId: data.citizenshipId })
+            .then(async (citizen) => {
+                if (citizen) {
+                    // update the citizen as he/she hasnt voted
+                    citizen.hasVoted = true;
+                    citizen.save();
+                    return res.status(200).send({ message: 'Citizen updated as hasnt voted!' });
+                } else {
+                    return res.status(400).send('Citizen doesnt exist');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+}
+
