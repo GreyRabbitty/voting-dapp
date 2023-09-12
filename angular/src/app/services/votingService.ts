@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-// import { Citizen } from '../model/citizen.model';
 // import jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -12,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class VotingService {
   private apiUrl = 'http://localhost:3000'; // API Endpoint
-  // private authToken: string;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -33,7 +31,25 @@ export class VotingService {
         tap((response: any) => {
           const token = response.token;
           localStorage.setItem('authToken', token);
-          this.router.navigate(['/stepverifyc']);
+        })
+      );
+  }
+
+  getCitizen(token: string) {
+    // make post request based on bearer token in the header
+    return this.http
+      .post(
+        `${this.apiUrl}/cdata/getc`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .pipe(
+        tap((response: any) => {
+          return response.data;
         })
       );
   }

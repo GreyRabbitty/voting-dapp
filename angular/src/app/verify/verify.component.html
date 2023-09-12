@@ -1,1 +1,33 @@
-<p>verify works!</p>
+<div class="px-4 py-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-8 lg:py-1">
+  <div class="max-w-screen-sm sm:text-center sm:mx-auto">
+    <h2 class="mb-3 font-sans text-xl font-bold tracking-tight text-gray-900 sm:text-xl sm:leading-none">
+      Vatandaşlık verileri;
+    </h2>
+    <p class="text-base text-gray-700 md:text-lg sm:px-4">
+      İsmi soyismi: <span class="font-bold">{{ citizen.name + ' ' + citizen.surname}}</span>
+    </p>
+    <p class="text-base text-gray-700 md:text-lg sm:px-4">
+      T.C. Kimlik numarası: <span class="font-bold">{{ citizen.idNumber }}</span></p>
+      <p class="text-base text-gray-700 md:text-lg sm:px-4">
+      İl ve posta kodu: <span class="font-bold">{{ citizen.city + ' ' + citizen.postalCode }}</span></p>
+    <p class="text-base text-gray-700 md:text-lg sm:px-4"> Eğer bu bilgiler doğru ise ilerle butonuna basınız. Eğer bilgiler yanlış ise iptal butonuna basınız.
+    </p>
+    <hr class="w-full my-5 border-gray-300" />
+
+    <h2 class="mb-4 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+      Oy vermeye hazır mısın?
+    </h2>
+    <p class="text-base text-gray-700 md:text-lg sm:px-4">
+      İlk defa denencek olan bu sistemde oy kullanmadan önce dikkatli okuyunuz! Bu ekrana bir daha geri dönüş yapamayacaksınız. İlerle butonuna bastıktan sonra oy vermek için toplam 5 dakikanız var, eğer 5 dakika içerisinde oy vermezseniz otomatik olarak oy verme işlemi iptal edilecektir. İptal butonu ile oy verme işlemini iptal edebilirsiniz. Lütfen bu metni dikkatlice okuyunuz.
+    </p>
+    <hr class="w-full my-8 border-gray-300" />
+    <div class="flex justify-center items-center gap-11 max-w-2xl">
+      <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-red-700 text-white"
+      (click)="cancelVoting()"
+      >Oyumu iptal et</button>
+      <button class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600"
+      (click)="verifyVoting()"
+      >Oy vermeye devam et</button>
+    </div>
+  </div>
+</div>

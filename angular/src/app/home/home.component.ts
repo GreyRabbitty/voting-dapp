@@ -22,12 +22,12 @@ export class HomeComponent {
       (response) => {
         // Successfuly started, redirect part 2
         console.log('Login successful');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/stepverifyc']);
       },
       (error) => {
         // Handle login error
         console.error('Login failed', error);
-        alert('Wrong credentials!');
+        alert('Something went wrong!');
         // Display error message or perform other actions upon login failure
       }
     );

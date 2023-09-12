@@ -9,8 +9,7 @@ const mongoose = require("mongoose");
 // Citizen checks if he/she is registered with this endpoint
 exports.check = async (req, res) => {
     // Get data from request body
-    const { citizenshipId, name, surname } = req.body;
-    const { secret } = req.body; // Secret is based on last 2 char of mother's maiden name 
+    const { citizenshipId, name, surname, secret } = req.body; // Secret is based on last 2 char of mother's maiden name
 
 
     if (!citizenshipId || !name || !surname || !secret) {
@@ -43,11 +42,10 @@ exports.check = async (req, res) => {
                             surname: citizen.surname,
                             city: citizen.city,
                             zipCode: citizen.zipCode,
-                            secret: citizen.secret
                         },
                         process.env.JWT_SECRET,
                         {
-                            expiresIn: '600'
+                            expiresIn: '10m'
                         }
                     );
                     return res.status(200).json({ token: token });
@@ -108,3 +106,23 @@ exports.verify = async (req, res) => {
         return res.status(200).send('The place of residence is not correct! Citizen updated as voted!');
     }
 };
+exports.get = async (req, res) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+        return res.status(400).send('Token doesnt exist!');
+    }
+    const token = authHeader.split(' ')[1]; // Assuming the header value is in the format 'Bearer <token>'
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            if (err.name === 'TokenExpiredError') {
+                return res.status(400).json({ message: 'Token has expired' });
+            } else {
+                return res.status(401).json({ message: 'Invalid token' });
+            }
+        }
+        // Token is valid
+        return res.status(200).json(decoded);
+    });
+}

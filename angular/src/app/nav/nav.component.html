@@ -5,16 +5,16 @@
       <span class="ml-1 text-xl">Yerel Seçimler</span>
       <svg xmlns="http://www.w3.org/2000/svg" class="w-15 h-15 rounded-full" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><rect x="10.005" y="65.034" fill-rule="evenodd" clip-rule="evenodd" width="60.751" height="33.887"/><rect x="6.339" y="55.847" fill-rule="evenodd" clip-rule="evenodd" width="68.249" height="6.188"/><path fill-rule="evenodd" clip-rule="evenodd" d="M56.01,45.188L56.01,45.188l5.441-8.472l-2.453-1.454l-6.779,2.747   c-0.977,0.396-1.857,0.588-2.692,0.588h0c-2.19,0-3.914-1.29-5.27-3.943c-0.639-1.25-0.708-2.696-0.196-4.071   c0.396-1.061,1.115-2.033,2.014-2.768l-3.513-2.143c-0.182-0.111-0.331-0.256-0.446-0.42l-0.521-0.31L26.991,46.771l28.097-0.147   L56.01,45.188z"/><polygon fill-rule="evenodd" clip-rule="evenodd" points="62.871,45.188 59.574,45.188 58.553,46.778 60.723,46.778 60.723,49.778    25.661,49.778 21.355,49.801 21.371,49.778 20.206,49.778 20.206,46.778 23.377,46.778 24.441,45.188 18.011,45.188 8.217,52.847    72.725,52.847  "/><path fill-rule="evenodd" clip-rule="evenodd" d="M70.604,9.767c-3.834,0-6.957-0.568-11.727-1.687   c-0.303-0.07-0.611-0.106-0.916-0.106c-2.127,0-4.459,1.826-6.238,4.886c-2.135,3.67-2.835,4.9-3.536,6.132   c-0.615,1.081-1.231,2.163-2.811,4.885l3.804,2.32l2.177-0.838c0.41-0.352,1.195-1.367,1.834-2.192   c0.641-0.831,1.305-1.689,1.928-2.361c0.51-0.551,1.092-1.11,1.871-1.459C57.504,19.116,58.1,19,58.764,19   c1.631,0,3.863,0.772,4.791,2.204c0.236,0.365,0.303,0.816,0.18,1.234c-0.121,0.418-0.42,0.763-0.816,0.944l-10.279,4.694   c-0.15,0.067-0.314,0.132-0.498,0.202l-2.922,1.185l0,0l-0.397,0.161c-0.848,0.345-1.631,1.15-1.95,2.005   c-0.222,0.595-0.203,1.153,0.056,1.659c1.18,2.309,2.174,2.309,2.599,2.309c0.436,0,0.963-0.123,1.565-0.368L61.529,31   c2.301-0.933,4.439-1.249,6.9-1.024c0.279,0.025,0.563,0.039,0.852,0.039c2.033,0,3.947-0.653,5.248-1.793   c0.619-0.541,1.18-0.963,1.871-1.408l7.137-4.59L76.184,9.49C74.09,9.661,72.268,9.767,70.604,9.767z"/><rect x="81.724" y="1.398" transform="matrix(0.8661 -0.4999 0.4999 0.8661 5.3459 44.2416)" fill-rule="evenodd" clip-rule="evenodd" width="7.036" height="21.491"/></g></svg>
     </a>
-    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-      <a class="mr-5 hover:text-gray-900">Contact</a>
-      <!-- <a class="mr-5 hover:text-gray-900">Second Link</a>
-      <a class="mr-5 hover:text-gray-900">Third Link</a>
-      <a class="mr-5 hover:text-gray-900">Fourth Link</a> -->
-    </nav>
-    <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Flow
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"></path>
-      </svg>
-    </button>
+      <nav *ngIf="!votingStarted" class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a routerLink="/contact" class="mr-5 hover:text-gray-900">Contact</a>
+        <!-- <a class="mr-5 hover:text-gray-900">Second Link</a>
+        <a class="mr-5 hover:text-gray-900">Third Link</a>
+        <a class="mr-5 hover:text-gray-900">Fourth Link</a> -->
+      </nav>
+      <button *ngIf="!votingStarted" routerLink="/flow" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Flow
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
   </div>
 </header>
