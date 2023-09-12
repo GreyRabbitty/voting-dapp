@@ -37,9 +37,9 @@ export class VerifyComponent implements OnInit {
       (error) => {
         // remove the authtoken from the localstorage and navigate to the main page
         console.log(error);
-        // localStorage.removeItem('authtoken');
-        // alert('Oturumunuz sona ermiştir. Lütfen tekrar giriş yapınız.');
-        // this.router.navigate(['/']);
+        localStorage.removeItem('authtoken');
+        alert('Oturumunuz sona ermiştir. Lütfen tekrar giriş yapınız.');
+        this.router.navigate(['/']);
       }
     );
   }
@@ -51,11 +51,20 @@ export class VerifyComponent implements OnInit {
     // if its true
     this.router.navigate(['/stepvote']);
   }
-  cancelVoting() {
-    // logic here
-    // // this.votingService.cancelVoting().subscribe(
 
-    alert('Oylamanız isteğiniz üzerine iptal edilmiştir.');
-    this.router.navigate(['/']);
+  cancelVoting() {
+    this.votingService.cancelVoting().subscribe(
+      (data) => {
+        alert('Oylamanız isteğiniz üzerine iptal edilmiştir.');
+        localStorage.removeItem('authToken');
+        this.router.navigate(['/votingdenied']);
+      },
+      (error) => {
+        console.log(error);
+        alert('Something went wrong.');
+        localStorage.removeItem('authToken');
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

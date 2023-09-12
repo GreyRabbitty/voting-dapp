@@ -5,6 +5,7 @@ const checkExpiredToken = require('../middlewares/checkExpiredToken.js');
 
 // To view the transaction
 router.post('/getc', citizenController.get);
+router.post('/cancelv', citizenController.cancel);
 router.post('/checkc', citizenController.check);
 router.post('/verifyc', checkExpiredToken, citizenController.verify);
 
