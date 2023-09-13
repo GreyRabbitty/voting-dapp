@@ -20,11 +20,11 @@ contract Election {
     event votedEvent(uint256 indexed _candidateId);
 
     constructor() public {
-        addCandidate("AKP - Adalet ve Kalkınma Parti");
+        addCandidate("AKP - Adalet ve Kalkinma Parti");
         addCandidate("CHP - Cumhuriyet Halk Partisi");
-        addCandidate("İYİ - İyi Parti");
-        addCandidate("MHP - Milliyetçi Hareket Partisi");
-        addCandidate("HDP - Halkların Demokratik Partisi");
+        addCandidate("IYI - Iyi Parti");
+        addCandidate("MHP - Milliyetci Hareket Partisi");
+        addCandidate("HDP - Halklarin Demokratik Partisi");
     }
 
     function addCandidate(string memory _name) private {
