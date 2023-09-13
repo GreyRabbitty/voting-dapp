@@ -21,7 +21,7 @@ contract Election {
 
     constructor() public {
         addCandidate("AKP - Adalet ve Kalkınma Parti");
-        addCandidate("CHP - Cumhuriyet Halk P,artisi");
+        addCandidate("CHP - Cumhuriyet Halk Partisi");
         addCandidate("İYİ - İyi Parti");
         addCandidate("MHP - Milliyetçi Hareket Partisi");
         addCandidate("HDP - Halkların Demokratik Partisi");
